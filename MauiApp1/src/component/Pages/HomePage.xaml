@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.HomePage"
+             BackgroundColor="#F5F5F5">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="1,0.5">
+            <GradientStop Color="#c94b4b" Offset="0.0" />
+            <!-- Berry Red -->
+            <GradientStop Color="#4b134f" Offset="1.0" />
+            <!-- Deep Purple -->
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+
+    <ContentPage.Resources>
+        <Style x:Key="SectionHeaderStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="Large" />
+            <Setter Property="FontFamily" Value="Helvetica" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="HorizontalOptions" Value="Start" />
+            <Setter Property="TextColor" Value="#333333" />
+            <Setter Property="Margin" Value="0,20,0,10" />
+        </Style>
+        <Style x:Key="ProductNameStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="18" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#333333" />
+            <Setter Property="LineBreakMode" Value="TailTruncation" />
+        </Style>
+        <Style x:Key="ProductDescriptionStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="TextColor" Value="#666666" />
+            <Setter Property="MaxLines" Value="2" />
+            <Setter Property="LineBreakMode" Value="TailTruncation" />
+        </Style>
+        <Style x:Key="ProductPriceStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="FontAttributes" Value="Bold" />
+            <Setter Property="TextColor" Value="#4CAF50" />
+        </Style>
+        <Style x:Key="FeaturedProductFrameStyle" TargetType="Frame">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HasShadow" Value="True" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="HeightRequest" Value="260" />
+            <Setter Property="WidthRequest" Value="280" />
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*">
+        <!-- NavBar -->
+        <local:NavBar Grid.Row="0" />
+
+        <!-- Main Content -->
+        <ScrollView Grid.Row="1">
+            <StackLayout Padding="15" Spacing="20">
+                <!-- Hero Section -->
+                <ScrollView>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <!-- Header -->
+                        <StackLayout Grid.Row="0" Padding="20,10">
+                            <Label Text="Men's Clothing Store" FontFamily="Helvetica" FontSize="Large" TextColor="Black" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                        </StackLayout>
+
+                        <!-- Hero Section -->
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="400" />
+                                <!-- Fixed width for the product image -->
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Left side: Text and CTA -->
+                            <VerticalStackLayout Grid.Column="0" Padding="20,40,20,20" VerticalOptions="Center">
+                                <Border BackgroundColor="LightBlue" Stroke="Transparent" StrokeShape="RoundRectangle 20" Padding="10,5" HorizontalOptions="Start">
+                                    <Label Text="Sale 70%" TextColor="Blue" FontSize="Small" />
+                                </Border>
+
+                                <Label Text="An Industrial Take on Streetwear" FontSize="Large" FontAttributes="Bold" Margin="0,20,0,10" />
+                                <Label Text="Anyone can beat you but no one can beat your outfit as long as you wear Men's outfits." 
+                                       FontSize="Medium" TextColor="Gray" Margin="0,0,0,20" />
+
+                                <Button Text="Start Shopping" BackgroundColor="Black" TextColor="White" 
+                                        CornerRadius="5" Padding="20,10" HorizontalOptions="Start" Clicked="StartShoppingButton" />
+
+                                <HorizontalStackLayout Margin="0,30,0,0" Spacing="20">
+                                    <Image Source="bazaar.png" WidthRequest="80" />
+                                    <Image Source="bustle.png" WidthRequest="80" />
+                                    <Image Source="versace.png" WidthRequest="80" />
+                                    <Image Source="instyle.png" WidthRequest="80" />
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+
+                            <!-- Right side: Product Image -->
+                            <Border Grid.Column="1" StrokeShape="RoundRectangle 20"
+                                    HeightRequest="400" Padding="0" StrokeThickness="0"
+                                    HorizontalOptions="Center" VerticalOptions="Center">
+                                <Image Source="bg.png" Aspect="AspectFill" WidthRequest="400"/>
+                            </Border>
+                        </Grid>
+                    </Grid>
+                </ScrollView>
+
+                <ScrollView>
+                    <Grid RowDefinitions="Auto, Auto" Padding="10">
+                        <!-- First Row: Promo Banner and Product Tiles -->
+                        <Grid Grid.Row="0" ColumnDefinitions="2*, 1*" Margin="0,10,0,0">
+
+                            <!-- Left Promo Banner (Equal size as Product Frame) -->
+                            <Frame 
+                                Grid.Column="0" 
+                                Padding="10" 
+                                BackgroundColor="#e0e0e0" 
+                                Margin="5" 
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand">
+                                <VerticalStackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                                    <Label 
+                                       Text="GET UP TO 60%" 
+                                       FontSize="40" 
+                                       FontAttributes="Bold" 
+                                       TextColor="Black" 
+                                       HorizontalTextAlignment="Center"/>
+                                    <Label 
+                                        Text="For the summer season" 
+                                        FontSize="16" 
+                                        TextColor="Gray" 
+                                        HorizontalTextAlignment="Center"/>
+                                </VerticalStackLayout>
+                            </Frame>
+
+                            <!-- Right Product Tile -->
+                            <Frame 
+                                Grid.Column="1" 
+                                Padding="10" 
+                                BackgroundColor="#f2f2f2" 
+                                Margin="5" 
+                                HorizontalOptions="FillAndExpand" 
+                                VerticalOptions="FillAndExpand">
+                                <VerticalStackLayout>
+                                    <Image Source="bg1.png" Aspect="AspectFit" HeightRequest="120" HorizontalOptions="Center"/>
+                                    <Label Text="Flex Sweatshirt" FontSize="14" TextColor="Black" HorizontalTextAlignment="Center"/>
+                                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                        <Label FontSize="12" TextColor="Gray">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="$100.00" TextDecorations="Strikethrough"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Label Text="$75.00" FontSize="12" TextColor="Black" Margin="10,0,0,0"/>
+                                    </StackLayout>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </Grid>
+
+                        <!-- Second Row: Promo Code Section -->
+                        <Frame 
+                            Grid.Row="1" 
+                            BackgroundColor="Black" 
+                            Padding="20" 
+                            Margin="0,10,0,0" 
+                            HorizontalOptions="FillAndExpand">
+                            <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="GET 30% Off" FontSize="30" FontAttributes="Bold" TextColor="White" HorizontalTextAlignment="Center"/>
+                                <Label Text="USE PROMO CODE" FontSize="16" TextColor="Gray" HorizontalTextAlignment="Center"/>
+                                <Label Text="MEN'SWEEKENDSALE" FontSize="16" TextColor="White" BackgroundColor="Gray" Padding="5" HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </Grid>
+                </ScrollView>
+
+                <!-- Featured Products -->
+                <Label Text="Featured Products" Style="{StaticResource SectionHeaderStyle}" />
+                <Frame BackgroundColor="White" CornerRadius="15" Padding="10" HeightRequest="300" Margin="0,0,0,20">
+                    <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never">
+                        <StackLayout Orientation="Horizontal" Spacing="10">
+                            <!-- Your featured products here -->
+                            <Frame Style="{StaticResource FeaturedProductFrameStyle}">
+                                <Image Source="featured1.jpeg" Aspect="AspectFill" />
+                            </Frame>
+                            <Frame Style="{StaticResource FeaturedProductFrameStyle}">
+                                <Image Source="featured2.jpeg" Aspect="AspectFill" />
+                            </Frame>
+                            <Frame Style="{StaticResource FeaturedProductFrameStyle}">
+                                <Image Source="featured3.jpeg" Aspect="AspectFill" />
+                            </Frame>
+                            <Frame Style="{StaticResource FeaturedProductFrameStyle}">
+                                <Image Source="product1.jpeg" Aspect="AspectFill" />
+                            </Frame>
+                        </StackLayout>
+                    </ScrollView>
+                </Frame>
+
+                <!-- Best Sellers -->
+                <Label Text="Best Sellers" Style="{StaticResource SectionHeaderStyle}" />
+                <CollectionView ItemsSource="{Binding BestSellers}"
+                        ItemsLayout="VerticalGrid, 2"
+                        HorizontalScrollBarVisibility="Never">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="10" Padding="10" CornerRadius="10" HasShadow="True" BackgroundColor="White">
+                                <Grid RowDefinitions="Auto,Auto,Auto,Auto" RowSpacing="5">
+                                    <Image Grid.Row="0" Source="{Binding Image}" Aspect="AspectFit" HeightRequest="150" WidthRequest="150"/>
+                                    <Label Grid.Row="1" Text="{Binding Name}" Style="{StaticResource ProductNameStyle}" />
+                                    <Label Grid.Row="2" Text="{Binding Description}" Style="{StaticResource ProductDescriptionStyle}" />
+                                    <Label Grid.Row="3" Text="{Binding Price, StringFormat='{0:C}'}" Style="{StaticResource ProductPriceStyle}" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <local:FooterPage />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

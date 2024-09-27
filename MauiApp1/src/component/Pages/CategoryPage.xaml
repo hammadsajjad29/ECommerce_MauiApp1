@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.CategoryPage"
+             BackgroundColor="Transparent">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="1,0.5">
+            <GradientStop Color="#c94b4b" Offset="0.0" />
+            <!-- Berry Red -->
+            <GradientStop Color="#4b134f" Offset="1.0" />
+            <!-- Deep Purple -->
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid RowDefinitions="Auto,*">
+        <local:NavBar Grid.Row="0" />
+
+        <ScrollView Grid.Row="1">
+            <StackLayout Padding="20" Spacing="20">
+                <Label Text="Our Products" FontSize="24" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center" />
+
+                <CollectionView x:Name="ProductCollectionView" ItemsSource="{Binding Products}" SelectionMode="None">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Vertical" Span="2" HorizontalItemSpacing="5" VerticalItemSpacing="5"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="10" CornerRadius="15" BorderColor="LightGray" Margin="10" BackgroundColor="White" HasShadow="True">
+                                <StackLayout Spacing="15" HorizontalOptions="FillAndExpand">
+                                    <Image Source="{Binding Image}" Aspect="AspectFit" HeightRequest="180" WidthRequest="180" HorizontalOptions="Center" />
+                                    <Label Text="{Binding Name}" FontSize="Medium" FontAttributes="Bold" TextColor="Black" HorizontalOptions="Center" />
+                                    <Label Text="{Binding Description}" FontSize="Small" TextColor="Gray" HorizontalOptions="Center" HorizontalTextAlignment="Center" />
+                                    <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" FontSize="Medium" TextColor="DarkGreen" HorizontalOptions="Center" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type local:CategoryPage}}, Path=BindingContext.ProductTappedCommand}" CommandParameter="{Binding .}" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <local:FooterPage />
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiApp1"
+             x:Class="MauiApp1.AddToCartPage">
+
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="1,0.5">
+            <GradientStop Color="#c94b4b" Offset="0.0" />
+            <GradientStop Color="#4b134f" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ContentPage.Resources>
+        <Style x:Key="DeleteButtonStyle" TargetType="Button">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="BackgroundColor" Value="#FF4136"/>
+            <Setter Property="Padding" Value="10,5"/>
+        </Style>
+        <Style x:Key="ActionButtonStyle" TargetType="Button">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="Padding" Value="20,10"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="Auto,*,Auto,Auto,Auto">
+        <Label Text="Cart Items" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,10" />
+
+        <CollectionView Grid.Row="1" x:Name="CartItemsList" ItemsSource="{Binding CartItems}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="10,5" Padding="10" BackgroundColor="White" CornerRadius="10">
+                        <Grid ColumnDefinitions="Auto,*">
+                            <Image Grid.Column="0" 
+                                   Source="{Binding Image}" 
+                                   Aspect="AspectFit" 
+                                   HeightRequest="100" 
+                                   WidthRequest="100"
+                                   VerticalOptions="Center"
+                                   Margin="0,0,10,0"/>
+
+                            <StackLayout Grid.Column="1" Spacing="5">
+                                <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold"/>
+                                <Label Text="{Binding Description}" FontSize="14"/>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding Price, StringFormat='Price: {0:C}'}" FontSize="14"/>
+                                    <Label Text="|" Margin="5,0"/>
+                                    <Label Text="{Binding SelectedColor, StringFormat='Color: {0}'}" FontSize="14"/>
+                                    <Label Text="|" Margin="5,0"/>
+                                    <Label Text="{Binding SelectedSize, StringFormat='Size: {0}'}" FontSize="14"/>
+                                    <Label Text="|" Margin="5,0"/>
+                                    <Label Text="{Binding SelectedQuantity, StringFormat='Quantity: {0}'}" FontSize="14"/>
+                                </StackLayout>
+
+                                <Button Text="Delete"
+                                        Command="{Binding BindingContext.RemoveFromCartCommand, Source={RelativeSource AncestorType={x:Type local:AddToCartPage}}}"
+                                        CommandParameter="{Binding .}" 
+                                        Style="{StaticResource DeleteButtonStyle}"
+                                        HorizontalOptions="Start"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <!-- Total Amount Label -->
+        <Label Grid.Row="2" Text="{Binding TotalAmount, StringFormat='Total Amount: {0:C}'}" 
+           FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" Margin="0,20,0,10"/>
+
+        <Grid Grid.Row="3" ColumnDefinitions="*,*" Margin="10,0,10,10">
+            <Button Grid.Column="0" Text="Place Order" Command="{Binding PlaceOrderCommand}" 
+                    BackgroundColor="#2ECC40" Style="{StaticResource ActionButtonStyle}"/>
+            <Button Grid.Column="1" Text="Add Products" 
+                    Command="{Binding Source={x:Reference CartItemsList}, Path=BindingContext.AddMoreProductsCommand}"
+                    BackgroundColor="#0074D9" Style="{StaticResource ActionButtonStyle}"/>
+        </Grid>
+
+        <local:FooterPage Grid.Row="4"/>
+    </Grid>
+</ContentPage>

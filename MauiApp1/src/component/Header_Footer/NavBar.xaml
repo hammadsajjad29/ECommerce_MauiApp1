@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.NavBar">
+    <ContentView.Resources>
+        <Style x:Key="NavBarButtonStyle" TargetType="Grid">
+            <Setter Property="WidthRequest" Value="80" />
+            <Setter Property="HeightRequest" Value="60" />
+            <Setter Property="Padding" Value="0,5" />
+        </Style>
+        <Style x:Key="NavBarIconStyle" TargetType="Image">
+            <Setter Property="WidthRequest" Value="24" />
+            <Setter Property="HeightRequest" Value="24" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+        </Style>
+        <Style x:Key="NavBarLabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="TextColor" Value="#333333" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="End" />
+        </Style>
+    </ContentView.Resources>
+
+    <!-- Frame for the Navigation Bar -->
+    <Frame BackgroundColor="White" 
+           Padding="10,5"
+           HasShadow="True"
+           CornerRadius="0">
+        <Grid ColumnDefinitions="Auto,*,*,*,*,Auto" 
+              ColumnSpacing="10"
+              HorizontalOptions="FillAndExpand">
+
+            <!-- Logo on the Left -->
+            <Image Source="logo.png"
+                   WidthRequest="200"
+                   HeightRequest="60"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center"
+                   Grid.Column="0" />
+
+            <!-- Home Button -->
+            <Grid Style="{StaticResource NavBarButtonStyle}" Grid.Column="1">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnHomeClicked" />
+                </Grid.GestureRecognizers>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="home.png" Style="{StaticResource NavBarIconStyle}" Grid.Row="0" />
+                <Label Text="Home" Style="{StaticResource NavBarLabelStyle}" Grid.Row="1" />
+            </Grid>
+
+            <!-- Category Button -->
+            <Grid Style="{StaticResource NavBarButtonStyle}" Grid.Column="2">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCategoryClicked" />
+                </Grid.GestureRecognizers>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="categories.png" Style="{StaticResource NavBarIconStyle}" Grid.Row="0" />
+                <Label Text="All Products" Style="{StaticResource NavBarLabelStyle}" Grid.Row="1" />
+            </Grid>
+
+            <!-- Cart Button -->
+            <Grid Style="{StaticResource NavBarButtonStyle}" Grid.Column="3">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnCartClicked" />
+                </Grid.GestureRecognizers>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="cart.png" Style="{StaticResource NavBarIconStyle}" Grid.Row="0" />
+                <Label Text="Cart" Style="{StaticResource NavBarLabelStyle}" Grid.Row="1" />
+            </Grid>
+
+            <!-- User Account Button (Right Corner) -->
+            <Grid Style="{StaticResource NavBarButtonStyle}" Grid.Column="4">
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnUserClicked" />
+                </Grid.GestureRecognizers>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Source="user.png" Style="{StaticResource NavBarIconStyle}" Grid.Row="0" />
+                <Label Text="Account" Style="{StaticResource NavBarLabelStyle}" Grid.Row="1" />
+            </Grid>
+        </Grid>
+    </Frame>
+</ContentView>

@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.FooterPage"
+             BackgroundColor="White" Padding="10">
+
+    <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand" Spacing="5">
+        <Label Text="© 2024 SyncOps"
+               FontSize="Small"
+               TextColor="Gray"
+               HorizontalOptions="Center" />
+
+        <Label Text="Privacy Policy" 
+               FontSize="Small" 
+               TextColor="Blue" 
+               HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnPrivacyPolicyClicked" />
+            </Label.GestureRecognizers>
+        </Label>
+
+        <Label Text="Terms of Service" 
+               FontSize="Small" 
+               TextColor="Blue" 
+               HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnTermsServiceClicked" />
+            </Label.GestureRecognizers>
+        </Label>
+    </StackLayout>
+</ContentView>

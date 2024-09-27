@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiApp1.SignUpPage">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="1,0.5">
+            <GradientStop Color="#c94b4b" Offset="0.0" />
+            <!-- Berry Red -->
+            <GradientStop Color="#4b134f" Offset="1.0" />
+            <!-- Deep Purple -->
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <ContentPage.Resources>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="HeightRequest" Value="50"/>
+            <Setter Property="WidthRequest" Value="{OnPlatform iOS=280, Android=280, WinUI=250}"/>
+            <Setter Property="Padding" Value="0,5,0,0"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush EndPoint="0,1">
+                        <GradientStop Color="#512bd4" Offset="0.1"/>
+                        <GradientStop Color="#3700b3" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Shadow">
+                <Shadow Brush="#512bd4" Offset="0,4" Opacity="0.5" Radius="4"/>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Frame Grid.Row="1" 
+               BackgroundColor="#c94b4b"
+               CornerRadius="20" 
+               Padding="20"
+               HasShadow="True"
+               WidthRequest="600"
+               HeightRequest="500">
+            <VerticalStackLayout Spacing="20">
+                <Label Text="Sign Up" 
+                       FontSize="50" 
+                       HorizontalOptions="Center" 
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       Padding="30"/>
+
+                <Entry x:Name="UsernameEntry" 
+                       Placeholder="Username"
+                       BackgroundColor="White"
+                       PlaceholderColor="DarkGray"
+                       HeightRequest="50"
+                       FontSize="16"
+                       WidthRequest="450"/>
+
+                <Entry x:Name="PasswordEntry" 
+                       Placeholder="Password" 
+                       IsPassword="True"
+                       BackgroundColor="White"
+                       PlaceholderColor="DarkGray"
+                       HeightRequest="50"
+                       FontSize="16"
+                       WidthRequest="450"/>
+                <Entry x:Name="ConfirmPasswordEntry" 
+                       Placeholder="ConfirmPassword" 
+                       IsPassword="True"
+                       BackgroundColor="White"
+                       PlaceholderColor="DarkGray"
+                       HeightRequest="50"
+                       FontSize="16"
+                       WidthRequest="450"/>
+
+
+                <Button Text="SignIn" 
+                        Clicked="OnSignUpButtonClicked"
+                        Style="{StaticResource ButtonStyle}"/>
+            </VerticalStackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>
